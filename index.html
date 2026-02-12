@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqulier Nexus</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px #00ff41;
+            margin-bottom: 2rem;
+        }
+        .container {
+            border: 1px solid #00ff41;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            max-width: 90%;
+            width: 400px;
+        }
+        input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #00ff41;
+            color: #fff;
+            font-size: 1.5rem;
+            text-align: center;
+            width: 80%;
+            margin-bottom: 1.5rem;
+            outline: none;
+            font-family: inherit;
+            text-transform: uppercase;
+        }
+        button {
+            background-color: #00ff41;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background-color: #fff;
+            box-shadow: 0 0 15px #fff;
+        }
+        .status {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.2) 50%,
+                rgba(0,0,0,0.2)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    <h1>AQULIER NEXUS</h1>
+    <div class="container">
+        <p>ENTER TICKER SYMBOL</p>
+        <input type="text" id="ticker" placeholder="BTC" autofocus>
+        <br>
+        <button onclick="pay()">[ ANALYZE ]</button>
+        <p class="status" id="status">ready_for_input...</p>
+    </div>
+
+    <script>
+        function pay() {
+            const ticker = document.getElementById('ticker').value.toUpperCase();
+            if (!ticker) return;
+            
+            const status = document.getElementById('status');
+            status.innerText = `INITIATING x402 PROTOCOL...`;
+            status.style.color = "#ffff00";
+
+            setTimeout(() => {
+                status.innerText = `PAYMENT REQUIRED: 0.1 USDC`;
+                // In real version, this triggers wallet popup
+                alert(`Simulating x402 Payment Request for ${ticker}...`);
+                status.innerText = `ACCESS GRANTED. DECRYPTING...`;
+                status.style.color = "#00ff41";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
